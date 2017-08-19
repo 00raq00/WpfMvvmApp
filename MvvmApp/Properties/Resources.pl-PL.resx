@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddOneMore" xml:space="preserve">
-    <value>Add one more</value>
+    <value>Dodaj nowy</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
-    <value>Change lang to PL</value>
+    <value>Zmień język na ENG</value>
   </data>
   <data name="DeleteOne" xml:space="preserve">
-    <value>Delete one</value>
+    <value>Usuń jeden</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Mvvm Example App</value>
+    <value>Przykładowa aplikacja Mvvm Wpf</value>
   </data>
 </root>
