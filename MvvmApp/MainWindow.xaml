@@ -10,15 +10,16 @@
    xmlns:p = "clr-namespace:MvvmApp.Properties"
         xmlns:local="clr-namespace:MvvmApp"
         mc:Ignorable="d"
-        Title="{lex:Loc Title}"  Height="345.697" Width="525">
+        Title="{lex:Loc Title}"  Height="377.697" Width="677">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <DataGrid ItemsSource="{Binding Path=ObservableCollectionPerson, Mode=TwoWay}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,43"/>
-        <Button Content = "{lex:Loc AddOneMore}"  Margin="0,0,122,18" Command="{Binding AddCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="97"/>
-        <Button Content = "{lex:Loc DeleteOne}"  Margin="0,0,10,18" Command="{Binding DeleteCommand}" IsEnabled="{Binding ObservableCollectionPerson.Count, Mode=OneWay}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="97" />
-        <Button  Content = "{lex:Loc ChangeLanguage}" Margin="0,0,235,18" Command="{Binding ChangeLanguageCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128"/>
+        <DataGrid ItemsSource="{Binding Path=ObservableCollectionPerson, Mode=TwoWay}" SelectedItem="{Binding CurrentPerson}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,43"/>
+        <Button Content = "{lex:Loc AddOneMore}"  Margin="0,0,236,18" Command="{Binding AddCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="97"/>
+        <Button Content = "{lex:Loc DeleteOne}"  Margin="0,0,124,18" Command="{Binding DeleteCommand}" IsEnabled="{Binding ObservableCollectionPerson.Count, Mode=OneWay}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="97" />
+        <Button  Content = "{lex:Loc ChangeLanguage}" Margin="0,0,349,18" Command="{Binding ChangeLanguageCommand}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="128"/>
+        <Button Content = "{lex:Loc DeleteSelected}"  Margin="0,0,10,18" Command="{Binding DeleteSelectedCommand}" IsEnabled="{Binding CurrentPerson, Mode=OneWay}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="97" />
 
     </Grid>
 </Window>

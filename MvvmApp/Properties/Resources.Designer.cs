@@ -88,6 +88,15 @@ namespace MvvmApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete selected.
+        /// </summary>
+        public static string DeleteSelected {
+            get {
+                return ResourceManager.GetString("DeleteSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mvvm Example App.
         /// </summary>
         public static string Title {

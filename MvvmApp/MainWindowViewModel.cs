@@ -14,24 +14,44 @@ namespace MvvmApp
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        private Person currentPerson;
         public MainWindowViewModel()
         {
             ObservableCollectionPerson = new ObservableCollection<Person>();
 
             AddCommand = new RelayCommand(GenerateAndAddNewPerson);
             DeleteCommand = new RelayCommand(DeleteFirst);
+            DeleteSelectedCommand = new RelayCommand(DeleteSelected, EnableDeleteSelected);
             ChangeLanguageCommand = new RelayCommand(ChangeLanguage);
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand AddCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand DeleteSelectedCommand { get; private set; }
+        public ICommand ChangeLanguageCommand { get; private set; }
+        public ObservableCollection<Person> ObservableCollectionPerson { get; set; }
+
+        public Person CurrentPerson
+        {
+            get
+            {
+                return currentPerson;
+            }
+            set
+            {
+                currentPerson = value;
+            }
         }
 
         private void ChangeLanguage(object obj)
         {
             if (System.Threading.Thread.CurrentThread.CurrentUICulture.Name.Equals("pl-PL"))
             {
-              System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             }
             else
             {
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pl-PL");
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl-PL");
             }
             LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
             LocalizeDictionary.Instance.Culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
@@ -41,16 +61,19 @@ namespace MvvmApp
         {
             ObservableCollectionPerson.RemoveAt(0);
         }
+        private void DeleteSelected(object obj)
+        {
+            ObservableCollectionPerson.Remove(CurrentPerson);
+        }
 
         private void GenerateAndAddNewPerson(object obj)
         {
             ObservableCollectionPerson.Add(new Person() { Name = Faker.Name.FullName(), Email = Faker.Internet.Email() });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand AddCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
-        public ICommand ChangeLanguageCommand { get; private set; }
-        public ObservableCollection<Person> ObservableCollectionPerson { get; set; }
+               
+        private bool EnableDeleteSelected(object obj)
+        {
+            return CurrentPerson != null;
+        }
     }
 }
